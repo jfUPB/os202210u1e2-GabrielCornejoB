@@ -6,10 +6,11 @@
 typedef void (*update)(struct observer *, subject *);
 
 typedef struct{
+    int var;
     update update;
 }observer;
 
-observer observer_new();
+observer *observer_new();
 void observer_ctor(observer*);
 void observer_destroy(observer*);
 

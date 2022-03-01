@@ -23,10 +23,9 @@ static void _removeObserver(subject *this, observer *observer){
 static void _notifyObservers(subject *this){
     for (int i = 0; i < LEN_OBSERVERS; i++){
         if(this->observers[i] != NULL){
-            this->observers[i]->update;
+            this->observers[i]->update;     //Creo que acá falta algo 
         }
     }
-    
 }
 
 subject *subject_new(){
@@ -36,5 +35,11 @@ void subject_ctor(subject *this){
     this->state = 0;
     this->add = _addObserver;
     this->remove = _removeObserver;
-
+    this->notify = _notifyObservers;
+}
+void subject_destroy(subject *this){
+    free(this);
+}
+void setObserverState(subject *this, int val){
+    this->state = val;
 }

@@ -19,5 +19,6 @@ typedef struct{
 subject *subject_new();         
 void subject_ctor(subject *);
 void subject_destroy(subject *);
+void setObserverState(subject *, int);
 
 #endif
