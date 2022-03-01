@@ -2,11 +2,14 @@
 #ifndef OBSERVER_H_
 #define OBSERVER_H_
 
-//CONSTRUCTOR
-//MET: Update(), como mínimo este metodo que implementa de una interfaz.
+typedef void (*update)(void*);
 
 typedef struct{
-
+    update update;
 }observer;
+
+observer observer_new();
+void observer_ctor(observer*);
+void observer_destroy(observer*);
 
 #endif

@@ -1,21 +1,22 @@
 //Notificador o publicador
 #ifndef SUBJECT_H
 #define SUBJECT_H
+#include "observer.h"
 
-//CONSTRUCTOR
-//ATR: Estado
-//ATR: Lista de suscriptores
-//MET: Agregar suscriptor
-//MET: Eliminar suscriptor
-//MET: Notificar suscriptores de la lista
-
-/*
-Notificar puede ocurrir cuando se llama el metodo puramente o cuando se cambia de estado, 
-por ende se puede tener un ATR:Estado
-*/
+typedef void (*addObserver)(void*);
+typedef void (*removeObserver)(void*);
+typedef void (*notifyObservers)(void*);
 
 typedef struct{
-
+    int state;
+    observer observer[10];
+    addObserver add;
+    removeObserver remove;
+    notifyObservers notify;
 }subject;
+
+subject *subject_new();         
+void subject_ctor(subject *);
+void subject_destroy(subject *);
 
 #endif
