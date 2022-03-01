@@ -1,8 +1,9 @@
 //Suscriptor
 #ifndef OBSERVER_H_
 #define OBSERVER_H_
+#include "subject.h"
 
-typedef void (*update)(void*);
+typedef void (*update)(struct observer *, subject *);
 
 typedef struct{
     update update;

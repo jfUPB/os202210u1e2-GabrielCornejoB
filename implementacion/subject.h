@@ -1,15 +1,16 @@
 //Notificador o publicador
 #ifndef SUBJECT_H
 #define SUBJECT_H
+#define LEN_OBSERVERS 10
 #include "observer.h"
 
-typedef void (*addObserver)(void*);
-typedef void (*removeObserver)(void*);
-typedef void (*notifyObservers)(void*);
+typedef void (*addObserver)(struct subject *, observer *);
+typedef void (*removeObserver)(struct subject *, observer *);
+typedef void (*notifyObservers)(struct subject *);
 
 typedef struct{
     int state;
-    observer observer[10];
+    observer *observers[LEN_OBSERVERS];
     addObserver add;
     removeObserver remove;
     notifyObservers notify;
