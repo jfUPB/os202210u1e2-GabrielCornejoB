@@ -1,11 +1,10 @@
 //Suscriptor
 #ifndef OBSERVER_H_
 #define OBSERVER_H_
-#include "subject.h"
 
 typedef struct _observer{
     void * impl;                                                //implementación del jugador                      
-    void (*update)(struct _observer *,int , Subject *);          //(this, state, subject)
+    void (*update)(struct _observer *,int , void *);          //(this, state, subject)
     void (*impl_update)(void *,int, void*);          //this.impl (impl update jugador)
 }Observer;
 

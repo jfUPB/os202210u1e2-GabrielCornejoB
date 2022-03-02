@@ -33,6 +33,7 @@ Subject *subject_new(void *impl, int state){
     this->addObserver = _addObserver;
     this->removeObserver = _removeObserver;
     this->notifyObservers = _notifyObservers;
+    return this;
 }
 void subject_destroy(Subject *this){
     free(this);

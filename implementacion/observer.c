@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "observer.h"
 
-static void _update(Observer *this, int state, Subject *subject){
+static void _update(Observer *this, int state, void *subject){
     this->impl_update(this->impl, state, subject);
 }
 

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdint.h>
+#include <stdlib.h>
 #include "dt.h"
 
 static void _cambiarEstrategia(Dt* this, Estrategia est){

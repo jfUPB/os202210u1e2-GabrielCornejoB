@@ -7,9 +7,9 @@
 typedef struct _subject{
     void *impl;
     int state;
-    Observer * observers[LEN_OBSERVERS];
-    void (*addObserver)(struct _subject *, Observer *);
-    void (*removeObserver)(struct _subject *, Observer *);
+    Observer *observers[LEN_OBSERVERS];
+    void (*addObserver)(struct _subject *,  Observer *);        //(Subject, Observer)
+    void (*removeObserver)(struct _subject *, Observer *);      //(Subject, Observer)
     void (*notifyObservers)(struct _subject *);
     
 }Subject;
