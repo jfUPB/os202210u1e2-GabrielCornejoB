@@ -3,15 +3,13 @@
 #define OBSERVER_H_
 #include "subject.h"
 
-typedef void (*update)(struct observer *, subject *);
-
 typedef struct{
-    int var;
-    update update;
-}observer;
+    void * impl;                                                //implementación del jugador                      
+    void (*update)(struct Observer *,int , Subject *);          //(this, state, subject)
+    void (*impl_update)(void *impl_j,int nose, void*);          //this.impl (impl update jugador)
+}Observer;
 
-observer *observer_new();
-void observer_ctor(observer*);
-void observer_destroy(observer*);
+Observer *observer_new(void *, void (*)(void *, int, void *));  //impl del jug;impl update jugad
+void observer_destroy(Observer*);       //Dudando si hacer esto un atr como una dirección void
 
 #endif

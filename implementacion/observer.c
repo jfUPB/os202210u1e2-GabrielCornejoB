@@ -2,19 +2,19 @@
 #include <stdio.h>
 #include "observer.h"
 
-static void _update(observer *this, subject *subject){
-    if(this->var == subject->state){
-        printf("Subject notificó a observer\n");
-    }
+static void _update(Observer *this, int state, Subject *subject){
+    this->impl_update(this->impl, state, subject);
 }
 
-observer *observer_new(){
-    return (observer*)malloc(sizeof(observer));
-}
-void observer_ctor(observer* this){
-    this->var = 2;
+Observer *observer_new(void *impl, void (*impl_update)(void *, int, void *)){
+    Observer *this = (Observer*)malloc(sizeof(Observer));
     this->update = _update;
+    this->impl = impl;
+    this->impl_update = (void (*)(void *, int, void *))impl_update;
+    return this;
 }
-void observer_destroy(observer* this){
+
+void observer_destroy(Observer* this){
     free(this);
+    this = NULL;
 }

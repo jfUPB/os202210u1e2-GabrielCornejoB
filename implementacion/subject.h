@@ -4,21 +4,17 @@
 #define LEN_OBSERVERS 10
 #include "observer.h"
 
-typedef void (*addObserver)(struct subject *, observer *);
-typedef void (*removeObserver)(struct subject *, observer *);
-typedef void (*notifyObservers)(struct subject *);
-
 typedef struct{
+    void *impl;
     int state;
-    observer *observers[LEN_OBSERVERS];
-    addObserver add;
-    removeObserver remove;
-    notifyObservers notify;
-}subject;
+    Observer *observers[LEN_OBSERVERS];
+    void (*addObserver)(struct Subject *, Observer *);
+    void (*removeObserver)(struct Subject *, Observer *);
+    void (*notifyObservers)(struct Subject *);
+    
+}Subject;
 
-subject *subject_new();         
-void subject_ctor(subject *);
-void subject_destroy(subject *);
-void setObserverState(subject *, int);
+Subject *subject_new(void *, int);              //impl, state
+void subject_destroy(Subject *);
 
 #endif
