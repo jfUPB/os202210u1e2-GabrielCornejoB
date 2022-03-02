@@ -3,17 +3,19 @@
 #include "../implementacion/subject.h"
 #include "../implementacion/observer.h"
 
-typedef void (*chutar)(void *);
-typedef void (*pasar)(void *);
+typedef enum{
+    ARRIBA = 0,
+    MEDIO = 1,
+    ABAJO = 2
+}Ubi;
 
 typedef struct{
     char *nombre;
-    chutar chutar;
-    pasar pasar;
-    observer * observer;
-}jugador;
+    Ubi *ubicacion;
+    //void (*chutar)(void *);
+    //void (*pasar)(void *);
+    Observer * observer;
+}Jugador;
 
-jugador *jugador_new();
-void jugador_ctor(jugador *, char *);
-
+Jugador *jugador_new(char *, Ubi);
 #endif
