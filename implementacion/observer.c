@@ -7,7 +7,7 @@ static void _update(Observer *this, int state, Subject *subject){
 }
 
 Observer *observer_new(void *impl, void (*impl_update)(void *, int, void *)){
-    Observer *this = (Observer*)malloc(sizeof(Observer));
+    Observer *this = (Observer*)malloc(sizeof(*this));
     this->update = _update;
     this->impl = impl;
     this->impl_update = (void (*)(void *, int, void *))impl_update;

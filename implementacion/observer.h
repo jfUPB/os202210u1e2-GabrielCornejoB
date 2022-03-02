@@ -3,10 +3,10 @@
 #define OBSERVER_H_
 #include "subject.h"
 
-typedef struct{
+typedef struct _observer{
     void * impl;                                                //implementación del jugador                      
-    void (*update)(struct Observer *,int , Subject *);          //(this, state, subject)
-    void (*impl_update)(void *impl_j,int nose, void*);          //this.impl (impl update jugador)
+    void (*update)(struct _observer *,int , Subject *);          //(this, state, subject)
+    void (*impl_update)(void *,int, void*);          //this.impl (impl update jugador)
 }Observer;
 
 Observer *observer_new(void *, void (*)(void *, int, void *));  //impl del jug;impl update jugad
