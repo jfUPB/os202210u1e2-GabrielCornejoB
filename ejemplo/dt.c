@@ -2,10 +2,16 @@
 #include <stdlib.h>
 #include "dt.h"
 
-static void _cambiarEstrategia(Dt* this, Estrategia est){
-    printf("El tecnico %s ordeno la estrategia #%d",this->nombre, est);
-    this->estrategia = est;
-    this->subject->notifyObservers(this->subject);
+static void _cambiarEstrategia(Dt *this, int est){
+    //Colocar un input para elegir la strat.
+    if(this->estrategia == est){
+        printf("El equipo ya está jugando con esa estrategia\n");
+    }
+    else{
+        printf("El tecnico %s ordeno la estrategia #%d",this->nombre, est);
+        this->estrategia = est;
+        this->subject->notifyObservers(this->subject);
+    } 
 }
 static Estrategia _getStrategy(Dt *this){
     return this->estrategia;

@@ -3,7 +3,7 @@
 #include "../implementacion/subject.h"
 #include "../implementacion/observer.h"
 
-typedef enum{
+typedef enum _estrategia{
     OFENSIVA = 0,
     EQUILIBRADA = 1,
     DEFENSIVA = 2
@@ -15,8 +15,8 @@ typedef struct _dt{
     Estrategia estrategia;
     Estrategia (*getStrategy)(struct _dt *);
 
-    void (*cambiarEstrategia)(struct _dt *, Estrategia *);
-    
+    void (*cambiarEstrategia)(struct _dt *, int);      //Es como un set
+
     Subject * subject;
     void (*addObserver)(struct _dt *, Observer*);
     void (*removeObserver)(struct _dt *, Observer*);
