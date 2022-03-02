@@ -9,14 +9,17 @@ typedef enum{
     DEFENSIVA = 2
 }Estrategia;
 
-typedef struct{
+typedef struct _dt{
     char *nombre;
+
     Estrategia estrategia;
-    Estrategia (*cambiarEstrategia)(struct Dt *, Estrategia *);
-    Estrategia (*getStrategy)(struct Dt *);
+    Estrategia (*getStrategy)(struct _dt *);
+
+    void (*cambiarEstrategia)(struct _dt *, Estrategia *);
+    
     Subject * subject;
-    void (*addObserver)(struct Dt *, Observer*);
-    void (*removeObserver)(struct Dt *, Observer*);
+    void (*addObserver)(struct _dt *, Observer*);
+    void (*removeObserver)(struct _dt *, Observer*);
 }Dt;
 
 Dt *dt_new(char *);

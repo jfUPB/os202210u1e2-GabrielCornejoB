@@ -19,8 +19,10 @@ static void _removeObserver(Dt *this, Observer *observer){
 Dt *dt_new(char *name){
     Dt *this = (Dt *)malloc(sizeof(*this));
     this->nombre = name;
-    this->cambiarEstrategia = _cambiarEstrategia;
     this->getStrategy = _getStrategy;
+    this->cambiarEstrategia = _cambiarEstrategia;
+    this->subject = subject_new(this, 1);
     this->addObserver = _addObserver;
     this->removeObserver = _removeObserver;
+    return this;
 }

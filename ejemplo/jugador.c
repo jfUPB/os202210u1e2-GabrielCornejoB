@@ -6,14 +6,15 @@
 static void _DtEvent(Jugador *this, Dt *dt){
     printf("%s, se reubicará por orden de: %s\n",this->nombre,dt->nombre);
     if(dt->estrategia == 0){
-        this->ubicacion == 0;
+        this->ubicacion = 0;
     }
     else if(dt->estrategia == 1){
-        this->ubicacion == 1;
+        this->ubicacion = 1;
     }
     else if(dt->estrategia == 2){
-        this->ubicacion == 2;
+        this->ubicacion = 2;
     }
+    //this->ubicacion = dt->estrategia
 }
 static Ubi _getUbicacion(Jugador *this){
     return this->ubicacion;
