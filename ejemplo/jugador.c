@@ -15,14 +15,18 @@ static void _DtEvent(Jugador *this, Dt *dt){
         this->ubicacion == 2;
     }
 }
+static Ubi _getUbicacion(Jugador *this){
+    return this->ubicacion;
+}
 
 static void _update(Jugador *this, int state, void *subject){
     _DtEvent(this, (Dt*)subject);
 }
 
 Jugador *jugador_new(char *nombre, Ubi ubic){
-    Jugador *this = (Jugador*)malloc(sizeof(Jugador));
+    Jugador *this = (Jugador*)malloc(sizeof(*this));
     this->nombre = nombre;
     this->ubicacion = ubic;
+    this->getUbicacion = _getUbicacion;
     this->observer = observer_new(this, (void (*)(void*, int, void*))_update);
 }

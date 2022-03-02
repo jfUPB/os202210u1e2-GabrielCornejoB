@@ -12,6 +12,7 @@ typedef enum{
 typedef struct{
     char *nombre;
     Ubi *ubicacion;
+    Ubi (*getUbicacion)(struct Jugador *);
     //void (*chutar)(void *);
     //void (*pasar)(void *);
     Observer * observer;
