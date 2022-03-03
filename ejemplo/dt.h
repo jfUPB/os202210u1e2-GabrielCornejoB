@@ -3,19 +3,18 @@
 #include "../implementacion/subject.h"
 #include "../implementacion/observer.h"
 
-typedef enum _estrategia{
-    OFENSIVA = 0,
-    EQUILIBRADA = 1,
-    DEFENSIVA = 2
-}Estrategia;
+typedef enum _dtEvent{
+    DAR_ORDEN
+}DtEvent;
 
 typedef struct _dt{
     char *nombre;
+    void (*destroy)(struct _dt*);
 
-    Estrategia estrategia;
-    Estrategia (*getStrategy)(struct _dt *);
+    DtEvent event;
+    DtEvent (*getEvent)(struct _dt *);
 
-    void (*cambiarEstrategia)(struct _dt *, int);      //Es como un set
+    void (*darOrden)(struct _dt *);      //Es como un set
 
     Subject * subject;
     void (*addObserver)(struct _dt *, Observer*);
