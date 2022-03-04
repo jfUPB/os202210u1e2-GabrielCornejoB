@@ -3,6 +3,7 @@
 #include "player.h"
 #include "coach.h"
 
+//Functions that takes enum number and turns it to its String representation
 char *printRole(int num){
     if(num == 0){ return "STRIKER"; }
     else if(num == 1){ return "MIDFIELDER"; }
@@ -15,6 +16,7 @@ char *printLocation(int num){
     else if(num == 2){ return "DOWN"; }
     else{ return "a"; }
 }
+//Destroy Player
 static void _destroy(Player *this){
     printf("DEBUG: Player: destroy()\n");
     this->observer->destroyOb(this->observer);
@@ -23,27 +25,32 @@ static void _destroy(Player *this){
         this = NULL;
     }
 }
+//Returns Player´s Role
 static Role _getRole(Player *this){
     printf("DEBUG: Player: getRole()\n");
     printf("\n\tPlayer '%s' role is: %s\n\n", this->name, printRole(this->role));
     return this->role;
 }
+//Returns Player´s Location
 static Location _getLocation(Player *this){
     printf("DEBUG: Player: getLocation()\n");
     printf("\n\tPlayer '%s' location: %s\n\n", this->name, printLocation(this->location));
     return this->location;
 }
+//Player is added to Coach´s list
 static void _enterField(Player *this, Coach *coach){
     printf("DEBUG: Player: EnterField()\n");                
     coach->addObserver(coach, this->observer);  
     printf("\n\tPlayer '%s' entered the field\n\n", this->name); 
 }
+//Verify if new position is same as actual position
 void verifyPosition(Player *this, int new){
     if(this->location != new){
         this->location = new;
         printf("\n\tPlayer '%s' changed location to: %s\n\n",this->name, printLocation(this->location));
     }
 }
+//Calls VerifyPosition in each case
 static void _handleDtEvent(Player *this, Coach *coach){
     printf("DEBUG: Player: handleDtEvent()\n");  
     if(coach->new_strat == 0){          //ULTRA OFFENSIVE
@@ -86,10 +93,12 @@ static void _handleDtEvent(Player *this, Coach *coach){
         verifyPosition(this, 2);        //TODOS
     }              
 }
+//Updates Player's location
 static void _update(Player *this, int state, void *subject){
     printf("DEBUG: Player: update()\n");                       
     _handleDtEvent(this, (Coach*) subject);
 }
+//Player constructor
 Player *player_new(char *playerName, int role){
     printf("DEBUG: Player: player_new()\n");
     Player *this = (Player*)malloc(sizeof(*this));
