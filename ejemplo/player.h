@@ -2,7 +2,7 @@
 #define PLAYER_H_
 #include "../implementacion/subject.h"
 #include "../implementacion/observer.h"
-#include "dt.h"
+#include "coach.h"
 
 typedef enum _location{
     UP = 0,
@@ -14,7 +14,7 @@ typedef struct _player{
     char *name;
     Location location;
     Location (*getLocation)(struct _player *);
-    void (*enterField)(struct _player *, Dt*);
+    void (*enterField)(struct _player *, Coach*);
     void (*destroy)(struct _player *);
     Observer * observer;
 }Player;

@@ -1,15 +1,15 @@
 #include <stdio.h>
-#include "jugador.h"
-#include "dt.h"
+#include "player.h"
+#include "coach.h"
 
 int main(){
-    Jugador *bicho = jugador_new("Serresiete", 0);
-    Dt *carlos = dt_new("Carletto");
-    bicho->getUbicacion(bicho);
+    Player *bicho = player_new("Serresiete", 0);
+    Coach *carlos = coach_new("Carletto");
+    bicho->getLocation(bicho);
 
-    bicho->firmarContrato(bicho, carlos);
-    carlos->darOrden(carlos);
+    bicho->enterField(bicho, carlos);
+    carlos->giveOrder(carlos);
     
-    bicho->getUbicacion(bicho);
+    bicho->getLocation(bicho);
     return 0;
 }

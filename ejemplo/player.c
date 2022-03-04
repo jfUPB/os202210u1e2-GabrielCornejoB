@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "player.h"
-#include "dt.h"
+#include "coach.h"
 
 static void _destroy(Player *this){
     this->observer->destroyOb(this->observer);
@@ -16,18 +16,18 @@ static Location _getLocation(Player *this){
 }
 //Tal vez si realizo herencia y coloco el atributo observer de primero en la clase jugador pueda
 //omitir esto
-static void _enterField(Player *this, Dt *dt){
+static void _enterField(Player *this, Coach *coach){
     printf("Player: EnterField()\n");
-    dt->addObserver(dt, this->observer);  
+    coach->addObserver(coach, this->observer);  
 }
-static void _handleDtEvent(Player *this, Dt *dt){
+static void _handleDtEvent(Player *this, Coach *dt){
     //printf("Jugador: %s, se reubicará por orden de: %s\n",this->nombre,dt->nombre);
     this->location = 2;
 }
 
 static void _update(Player *this, int state, void *subject){
     printf("Player: update()\n");
-    _handleDtEvent(this, (Dt*) subject);
+    _handleDtEvent(this, (Coach*) subject);
 }
 Player *player_new(char *playerName, int default_location){
     Player *this = (Player*)malloc(sizeof(*this));
