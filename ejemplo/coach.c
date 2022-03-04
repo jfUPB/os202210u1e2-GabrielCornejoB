@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include "coach.h"
 
-static void _giveOrder(Coach *this){
+static void _giveOrder(Coach *this, int newStrat){
     printf("DEBUG: Coach: giveOrder()\n");
     printf("\n\tCoach '%s' is changing strat\n\n",this->name);
     this->event = GIVE_ORDER;
+    this->new_strat = newStrat;
     this->subject->notifyObservers(this->subject);
 }
 static void _destroy(Coach *this){

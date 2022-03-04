@@ -14,7 +14,9 @@ typedef struct _coach{
     CoachEvent event;
     CoachEvent (*getEvent)(struct _coach *);
 
-    void (*giveOrder)(struct _coach *);      //Es como un set
+    void (*giveOrder)(struct _coach *, int);    
+
+    int new_strat; 
 
     Subject * subject;
     void (*addObserver)(struct _coach *, Observer*);

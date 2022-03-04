@@ -8,7 +8,9 @@ int main(){
     bicho->getLocation(bicho);
 
     bicho->enterField(bicho, carlos);
-    carlos->giveOrder(carlos);
+    carlos->giveOrder(carlos, 1);
+
+    printf("\n\tNew strat %d\n\n", carlos->new_strat);
     
     bicho->getLocation(bicho);
     return 0;

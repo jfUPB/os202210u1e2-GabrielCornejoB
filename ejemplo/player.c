@@ -21,10 +21,10 @@ static void _enterField(Player *this, Coach *coach){
     coach->addObserver(coach, this->observer);  
     printf("\n\tPlayer '%s' entered the field\n\n", this->name); 
 }
-static void _handleDtEvent(Player *this, Coach *dt){
+static void _handleDtEvent(Player *this, Coach *coach){
     printf("DEBUG: Player: handleDtEvent()\n");                    
-    this->location = 2;
-    printf("\n\tPlayer '%s' changed location to: %d\n\n",this->name, 2);
+    this->location = coach->new_strat;
+    printf("\n\tPlayer '%s' changed location to: %d\n\n",this->name, this->location);
 }
 
 static void _update(Player *this, int state, void *subject){
