@@ -10,10 +10,18 @@ typedef enum _location{
     BACK = 2
 }Location;
 
+typedef enum _role{
+    STRIKER = 0,
+    MIDFIELDER = 1,
+    DEFENDER = 2
+}Role;
+
 typedef struct _player{
     char *name;
     Location location;
     Location (*getLocation)(struct _player *);
+    Role role;
+    Role (*getRole)(struct _player *);
     void (*enterField)(struct _player *, Coach*);
     void (*destroy)(struct _player *);
     Observer * observer;

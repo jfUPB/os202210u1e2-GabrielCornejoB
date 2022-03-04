@@ -7,6 +7,14 @@ typedef enum _coachEvent{
     GIVE_ORDER
 }CoachEvent;
 
+typedef enum _strategy{
+    ULTRA_OFFENSIVE = 0,
+    OFFENSIVE = 1,
+    BALANCED = 2,
+    DEFENSIVE = 3,
+    ULTRA_DEFENSIVE = 4
+}Strategy;
+
 typedef struct _coach{
     char *name;
     void (*destroy)(struct _coach*);
