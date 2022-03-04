@@ -3,16 +3,18 @@
 #include "observer.h"
 
 void _destroyOb(Observer* this){
+    printf("DEBUG: Observer: destroy()\n");
     free(this);
     this = NULL;
 }
 
 static void _update(Observer *this, int state, void *subject){
-    printf("Observer: update\n");
+    printf("DEBUG: Observer: update()\n");
     this->impl_update(this->impl, state, subject);
 }
 
 Observer *observer_new(void *impl, void (*impl_update)(void *, int, void *)){
+    printf("DEBUG: Observer: observer_new()\n");
     Observer *this = (Observer*)malloc(sizeof(*this));
     this->destroyOb = _destroyOb;
     this->update = _update;

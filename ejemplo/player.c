@@ -4,6 +4,7 @@
 #include "coach.h"
 
 static void _destroy(Player *this){
+    printf("DEBUG: Player: destroy()\n");
     this->observer->destroyOb(this->observer);
     if(this != NULL){
         free(this);
@@ -11,25 +12,27 @@ static void _destroy(Player *this){
     }
 }
 static Location _getLocation(Player *this){
-    printf("Player: getLocation(): %d\n",this->location);
+    printf("DEBUG: Player: getLocation()\n");
+    printf("\n\tPlayer '%s' location: %d\n\n", this->name, this->location);
     return this->location;
 }
-//Tal vez si realizo herencia y coloco el atributo observer de primero en la clase jugador pueda
-//omitir esto
 static void _enterField(Player *this, Coach *coach){
-    printf("Player: EnterField()\n");
+    printf("DEBUG: Player: EnterField()\n");                
     coach->addObserver(coach, this->observer);  
+    printf("\n\tPlayer '%s' entered the field\n\n", this->name); 
 }
 static void _handleDtEvent(Player *this, Coach *dt){
-    //printf("Jugador: %s, se reubicará por orden de: %s\n",this->nombre,dt->nombre);
+    printf("DEBUG: Player: handleDtEvent()\n");                    
     this->location = 2;
+    printf("\n\tPlayer '%s' changed location to: %d\n\n",this->name, 2);
 }
 
 static void _update(Player *this, int state, void *subject){
-    printf("Player: update()\n");
+    printf("DEBUG: Player: update()\n");                       
     _handleDtEvent(this, (Coach*) subject);
 }
 Player *player_new(char *playerName, int default_location){
+    printf("DEBUG: Player: player_new()\n");
     Player *this = (Player*)malloc(sizeof(*this));
     this->name = playerName;
     this->location = default_location;
@@ -37,5 +40,6 @@ Player *player_new(char *playerName, int default_location){
     this->getLocation = _getLocation;
     this->enterField = _enterField;
     this->observer = observer_new(this, (void (*)(void*, int, void*))_update);
+    printf("\n\tPlayer '%s' created\n\n", playerName);
     return this;
 }
