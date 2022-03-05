@@ -51,6 +51,12 @@ int main(){
     lukita->getLocation(lukita);
     sergio->getLocation(sergio);
     miguel->getLocation(miguel);
+
+    bicho->destroy(bicho);
+    lukita->destroy(lukita);
+    sergio->destroy(sergio);
+    miguel->destroy(miguel);
+    carletto->destroy(carletto);
     return 0;
 }
 /*
