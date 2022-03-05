@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "coach.h"
+#include <time.h>
 
 //Functions that takes enum number and turns it to its String representation
 char *printStrat(int num){
@@ -13,10 +14,22 @@ char *printStrat(int num){
 }
 //Coach changes strat
 static void _giveOrder(Coach *this, int newStrat){
-    printf("DEBUG: Coach: giveOrder()\n");
-    printf("\n\tCoach '%s' is changing strat to: %s\n\n",this->name, printStrat(newStrat));
+    if(newStrat < 0 || newStrat > 4){
+        printf("DEBUG: Coach: giveOrder()\n");
+        printf("DEBUG: Invalid strat, choosing random strat\n");
+        int random;
+        srand(time(0));
+        random = rand() % 5;
+        printf("DEBUG: Random strat is: %d", random);
+        this->new_strat = random;
+        printf("\t\t\tCoach '%s' is changing strat to: %s\n\n",this->name, printStrat(this->new_strat));
+    }
+    else{
+        this->new_strat = newStrat;
+        char *s1 = "DEBUG: Coach: giveOrder()";
+        printf("%-40s\tCoach '%s' is changing strat to: %s\n\n", s1,this->name, printStrat(this->new_strat));
+    }
     this->event = GIVE_ORDER;
-    this->new_strat = newStrat;
     this->subject->notifyObservers(this->subject);
 }
 //Destroy Coach
@@ -54,6 +67,6 @@ Coach *coach_new(char *coachName){
     this->subject = subject_new(this);
     this->addObserver = _addObserver;
     this->removeObserver = _removeObserver;
-    printf("\n\tCoach '%s' created\n\n", coachName);
+    printf("\tCoach '%s' created\n\n", coachName);
     return this;
 }

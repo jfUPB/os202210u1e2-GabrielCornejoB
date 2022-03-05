@@ -10,12 +10,13 @@ void _destroyOb(Observer* this){
 }
 //Update Observer
 static void _update(Observer *this,void *subject){
-    printf("DEBUG: Observer: update()\n");
+    printf("\nDEBUG: Observer: update()\n");
     this->impl_update(this->impl, subject);
 }
 //Observer constructor
 Observer *observer_new(void *impl, void (*impl_update)(void *, void *)){
-    printf("DEBUG: Observer: observer_new()\n");
+    char *s1 = "DEBUG: Observer: observer_new()";
+    printf("%-40s", s1);
     Observer *this = malloc(sizeof(*this));
     this->destroyOb = _destroyOb;
     this->update = _update;

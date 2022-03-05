@@ -9,40 +9,48 @@ void _destroySu(Subject *this){
 }
 //Add Observer to list
 static void _addObserver(Subject *this, Observer *observer){
-    printf("DEBUG: Subject: addObserver()\n");
+    char *s1 = "DEBUG: Subject: addObserver()";
+    printf("%-40s", s1);
+    int bool = 0;
     for (int i = 0; i < LEN_OBSERVERS; i++){
         if(this->observers[i] == NULL){
             this->observers[i] = observer;
-            //printf("Subject: Se colocó el observer en la lista\n");
+            bool = 1;
             break;
         }
     }
-    //printf("Lista de Observers llena:(\n");
+    if(bool == 0){
+        printf("\n\t\tSubject's list full, could not add new Observer\n\n");
+    }
 }
 //Remove Observer from list
 static void _removeObserver(Subject *this, Observer *observer){
     printf("DEBUG: Subject: removeObserver()\n");
+    int bool = 0;
     for (int i = 0; i < LEN_OBSERVERS; i++){
         if(this->observers[i] == observer){
             this->observers[i] = NULL;
+            bool = 1;
             break;
         }
     }
-    //printf("No se encontró el Observer a eliminar\n");
+    if(bool == 0){
+        printf("\n\t\tObserver wasn't found on list\n\n");
+    }
 }
 //Notify all Observers in list
 static void _notifyObservers(Subject *this){
     printf("DEBUG: Subject: notifyObservers()\n");
     for (int i = 0; i < LEN_OBSERVERS; i++){
         if(this->observers[i] != NULL){
-            //printf("Subject: se notificara a los observers en la lista\n");
             this->observers[i]->update(this->observers[i], this->impl);   
         }
     }
 }
 //Subject constructor
 Subject *subject_new(void *impl){
-    printf("DEBUG: Subject: subject_new()\n");
+    char *s1 = "DEBUG: Subject: subject_new()";
+    printf("%-40s", s1);
     Subject *this = malloc(sizeof(*this));
     this->destroySu = _destroySu;
     this->impl = impl;
