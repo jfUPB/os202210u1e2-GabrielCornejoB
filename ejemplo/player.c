@@ -94,14 +94,14 @@ static void _handleDtEvent(Player *this, Coach *coach){
     }              
 }
 //Updates Player's location
-static void _update(Player *this, int state, void *subject){
+static void _update(Player *this, void *subject){
     printf("DEBUG: Player: update()\n");                       
     _handleDtEvent(this, (Coach*) subject);
 }
 //Player constructor
 Player *player_new(char *playerName, int role){
     printf("DEBUG: Player: player_new()\n");
-    Player *this = (Player*)malloc(sizeof(*this));
+    Player *this = malloc(sizeof(*this));
     this->name = playerName;
     this->role = role;
     this->location = role;
@@ -109,7 +109,7 @@ Player *player_new(char *playerName, int role){
     this->getRole = _getRole;
     this->getLocation = _getLocation;
     this->enterField = _enterField;
-    this->observer = observer_new(this, (void (*)(void*, int, void*))_update);
+    this->observer = observer_new(this, (void (*)(void*, void*))_update);
     printf("\n\tPlayer '%s' created, default role is: %s\n\n", playerName, printRole(this->role));
     return this;
 }

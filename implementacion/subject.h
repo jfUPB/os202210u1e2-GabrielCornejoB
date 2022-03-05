@@ -5,7 +5,6 @@
 #include "observer.h"
 
 typedef struct _subject{
-    int state;
     void (*destroySu)(struct _subject *);                       //(this)
     void *impl;
     Observer *observers[LEN_OBSERVERS];
@@ -16,6 +15,6 @@ typedef struct _subject{
 }Subject;
 
 //Subject constructor
-Subject *subject_new(void *, int);                              //impl, state
+Subject *subject_new(void *);                              //impl, state
 
 #endif

@@ -46,12 +46,12 @@ static void _removeObserver(Coach *this, Observer *observer){
 //Coach constructor
 Coach *coach_new(char *coachName){
     printf("DEBUG: Coach: coach_new()\n");
-    Coach *this = (Coach *)malloc(sizeof(*this));
+    Coach *this = malloc(sizeof(*this));
     this->name = coachName;
     this->destroy = _destroy;
     this->getEvent = _getEvent;
     this->giveOrder = _giveOrder;
-    this->subject = subject_new(this, 1);
+    this->subject = subject_new(this);
     this->addObserver = _addObserver;
     this->removeObserver = _removeObserver;
     printf("\n\tCoach '%s' created\n\n", coachName);

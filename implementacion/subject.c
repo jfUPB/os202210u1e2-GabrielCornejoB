@@ -36,17 +36,16 @@ static void _notifyObservers(Subject *this){
     for (int i = 0; i < LEN_OBSERVERS; i++){
         if(this->observers[i] != NULL){
             //printf("Subject: se notificara a los observers en la lista\n");
-            this->observers[i]->update(this->observers[i], this->state, this->impl);   
+            this->observers[i]->update(this->observers[i], this->impl);   
         }
     }
 }
 //Subject constructor
-Subject *subject_new(void *impl, int state){
+Subject *subject_new(void *impl){
     printf("DEBUG: Subject: subject_new()\n");
-    Subject *this = (Subject*)malloc(sizeof(*this));
+    Subject *this = malloc(sizeof(*this));
     this->destroySu = _destroySu;
     this->impl = impl;
-    this->state = state;
     this->addObserver = _addObserver;
     this->removeObserver = _removeObserver;
     this->notifyObservers = _notifyObservers;
